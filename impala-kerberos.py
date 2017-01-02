@@ -1,13 +1,8 @@
 from impala.dbapi import connect
+from impala.util import as_pandas
 from Constants import Constants
 
-# use_kerberos=True is now deprecated and switch to auth_mechanism="GSSAPI" is recommended
-conn = connect(
-    host=Constants.IMPALA_KERBEROS_URL, 
-    port=Constants.IMPALA_PORT, 
-    auth_mechanism="GSSAPI"
-)
-
+conn = connect(host=Constants.IMPALA_KERBEROS_URL, port=Constants.IMPORT_KERBEROS_PORT, auth_mechanism='GSSAPI')
 cursor = conn.cursor()
 
 cursor.execute("SHOW TABLES")
